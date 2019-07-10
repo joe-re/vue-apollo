@@ -3,13 +3,14 @@ import Vue from 'vue'
 import 'isomorphic-fetch'
 import { ApolloClient } from 'apollo-client'
 import { HttpLink } from 'apollo-link-http'
+import { InMemoryCache } from 'apollo-cache-inmemory'
 
 import VueApollo from '../index'
 import App from './App'
 import Decorator from './Decorator'
 
 const httpLink = new HttpLink({ uri: 'https://dummy.test.com' })
-const cache: any = 'dummy cache';
+const cache = new InMemoryCache()
 const apolloClient = new ApolloClient({
   link: httpLink,
   cache,
