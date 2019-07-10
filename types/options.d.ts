@@ -1,11 +1,6 @@
 import { WatchQueryOptions, MutationOptions, SubscriptionOptions, SubscribeToMoreOptions, ObservableQuery, NetworkStatus } from 'apollo-client'
 import { DocumentNode } from 'graphql';
 
-// include Omit type from https://github.com/Microsoft/TypeScript/issues/12215
-type Property = string | number | symbol;
-type Diff<T extends Property, U extends Property> = ({ [P in T]: P } & { [P in U]: never } & { [x: string]: never })[T];
-type Omit<T, K extends keyof T> = { [P in Diff<keyof T, K>]?: T[P] };
-
 type ApolloVueThisType<V> = V & { [key: string]: any };
 type VariableFn<V> = ((this: ApolloVueThisType<V>) => Object) | Object;
 type ApolloVueUpdateQueryFn<V> = (this: ApolloVueThisType<V>, previousQueryResult: { [key: string]: any }, options: {
